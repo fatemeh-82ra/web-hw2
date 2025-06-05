@@ -1,34 +1,38 @@
 // src/components/Sidebar.js
-import React from 'react';
+import React, { useContext } from 'react';
+import {AppContext} from "../context/AppContext";
+// import { AppContext } from '../AppContext'; // Adjust path
 
 const SHAPES = [
-    { id: 'circle', label: '● Circle' }, //
-    { id: 'square', label: '■ Square' }, //
-    { id: 'triangle', label: '▲ Triangle' }, //
+    { id: 'circle', label: '● Circle' },
+    { id: 'square', label: '■ Square' },
+    { id: 'triangle', label: '▲ Triangle' },
 ];
 
-function Sidebar({ selectedShapeTool, onSelectShapeTool }) {
+function Sidebar() {
+    // Consume context values
+    const { selectedShapeTool, setSelectedShapeTool } = useContext(AppContext);
 
     const handleDragStart = (event, shapeId) => {
-        event.dataTransfer.setData("application/react-shape-tool-type", shapeId); // Use a custom data type to store the shape ID
-        event.dataTransfer.effectAllowed = "copy"; // Indicate that the operation is a copy
+        event.dataTransfer.setData("application/react-shape-tool-type", shapeId);
+        event.dataTransfer.effectAllowed = "copy";
     };
 
     return (
         <aside className="app-sidebar">
-            <h3>Tools</h3> {/* */}
+            <h3>Tools</h3>
             {SHAPES.map(shape => (
                 <div
-                    key={shape.id} //
-                    className={`shape-tool ${selectedShapeTool === shape.id ? 'selected' : ''}`} //
-                    onClick={() => onSelectShapeTool(shape.id)} //
-                    title={`Drag to canvas to add ${shape.id}`} // Updated title for better UX
-                    draggable="true" // Make the div draggable
-                    onDragStart={(event) => handleDragStart(event, shape.id)} // Handle the start of a drag operation
+                    key={shape.id}
+                    className={`shape-tool ${selectedShapeTool === shape.id ? 'selected' : ''}`}
+                    onClick={() => setSelectedShapeTool(shape.id)}
+                    title={`Drag to canvas to add ${shape.id}`}
+                    draggable="true"
+                    onDragStart={(event) => handleDragStart(event, shape.id)}
                 >
-                    {shape.id === 'circle' && <div className="tool-icon circle-icon"></div>} {/* */}
-                    {shape.id === 'square' && <div className="tool-icon square-icon"></div>} {/* */}
-                    {shape.id === 'triangle' && <div className="tool-icon triangle-icon"></div>} {/* */}
+                    {shape.id === 'circle' && <div className="tool-icon circle-icon"></div>}
+                    {shape.id === 'square' && <div className="tool-icon square-icon"></div>}
+                    {shape.id === 'triangle' && <div className="tool-icon triangle-icon"></div>}
                 </div>
             ))}
         </aside>

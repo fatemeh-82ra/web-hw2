@@ -1,7 +1,12 @@
 // src/components/Footer.js
-import React from 'react';
+import React, { useContext } from 'react';
+import {AppContext} from "../context/AppContext";
+// import { AppContext } from '../AppContext'; // Adjust path
 
-function Footer({ shapeCounts }) {
+function Footer() {
+    // Consume shapeCounts from context
+    const { shapeCounts } = useContext(AppContext);
+
     return (
         <footer className="app-footer">
             <span>Circle: {shapeCounts.circle}</span>
