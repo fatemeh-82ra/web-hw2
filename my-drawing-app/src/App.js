@@ -11,7 +11,6 @@ function App() {
   const [selectedShapeTool, setSelectedShapeTool] = useState(null); //
   const [shapesOnCanvas, setShapesOnCanvas] = useState([]); //
 
-  // Calculate shape counts whenever shapesOnCanvas changes
   const shapeCounts = React.useMemo(() => {
     const counts = { circle: 0, square: 0, triangle: 0 }; //
     shapesOnCanvas.forEach(shape => {
@@ -20,9 +19,8 @@ function App() {
       }
     });
     return counts; //
-  }, [shapesOnCanvas]);
+  }, [shapesOnCanvas]); //
 
-  // Renamed the original addShapeToCanvas to clarify its trigger (click after selection)
   const addShapeToCanvasOnClick = useCallback((x, y) => {
     if (selectedShapeTool) { //
       const newShape = {
@@ -33,30 +31,65 @@ function App() {
       };
       setShapesOnCanvas(prevShapes => [...prevShapes, newShape]); //
     }
-  }, [selectedShapeTool]);
+  }, [selectedShapeTool]); //
 
-  // New function to add a shape from a drag-and-drop operation
   const addShapeFromDrop = useCallback((shapeType, x, y) => {
-    if (shapeType) {
+    if (shapeType) { //
       const newShape = {
-        id: `${shapeType}-${Date.now()}`, // Use the dropped shape's type
-        type: shapeType,
-        x: x,
-        y: y,
+        id: `${shapeType}-${Date.now()}`, //
+        type: shapeType, //
+        x: x, //
+        y: y, //
       };
-      setShapesOnCanvas(prevShapes => [...prevShapes, newShape]);
+      setShapesOnCanvas(prevShapes => [...prevShapes, newShape]); //
     }
-  }, []); // Empty dependency array as it gets all info from arguments
+  }, []); //
 
   const removeShapeFromCanvas = useCallback((shapeId) => {
     setShapesOnCanvas(prevShapes => prevShapes.filter(shape => shape.id !== shapeId)); //
-  }, []);
+  }, []); //
 
-  const handleExport = () => { /* ... existing code ... */ }; //
-  const handleImport = (event) => { /* ... existing code ... */ }; //
+  // RESTORED: Full handleExport function
+  const handleExport = () => {
+    const dataToExport = {
+      drawingName: drawingName,
+      shapes: shapesOnCanvas,
+    }; //
+    const jsonString = `data:text/json;charset=utf-8,${encodeURIComponent(
+        JSON.stringify(dataToExport)
+    )}`; //
+    const link = document.createElement('a'); //
+    link.href = jsonString; //
+    link.download = `${drawingName.replace(/\s+/g, '_') || 'drawing'}.json`; //
+    link.click(); //
+    link.remove(); //
+  };
+
+  // RESTORED: Full handleImport function
+  const handleImport = (event) => {
+    const file = event.target.files[0]; //
+    if (file) { //
+      const reader = new FileReader(); //
+      reader.onload = (e) => {
+        try {
+          const importedData = JSON.parse(e.target.result); //
+          if (importedData.drawingName && Array.isArray(importedData.shapes)) { //
+            setDrawingName(importedData.drawingName); //
+            setShapesOnCanvas(importedData.shapes); //
+          } else {
+            alert('Invalid JSON file format.'); //
+          }
+        } catch (error) {
+          alert('Error parsing JSON file: ' + error.message); //
+        }
+      };
+      reader.readAsText(file); //
+      event.target.value = null; // Reset file input
+    }
+  };
 
   return (
-      <div className="app-container">
+      <div className="app-container"> {/* */}
         <Header
             drawingName={drawingName} //
             onDrawingNameChange={setDrawingName} //
@@ -66,9 +99,9 @@ function App() {
         <div className="main-content"> {/* */}
           <Canvas
               shapes={shapesOnCanvas} //
-              onCanvasRawClick={addShapeToCanvasOnClick} // For click-to-add if still desired
+              onCanvasRawClick={addShapeToCanvasOnClick} //
               onShapeDoubleClick={removeShapeFromCanvas} //
-              onShapeDrop={addShapeFromDrop}          // Pass the new handler for drop events
+              onShapeDrop={addShapeFromDrop} //
           />
           <Sidebar
               selectedShapeTool={selectedShapeTool} //
