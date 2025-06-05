@@ -147,5 +147,18 @@ body {
   background-color: white;
 }
 
+.shape-tool[draggable="true"] {
+  cursor: grab; /* Indicates to the user that the item is draggable */
+}
+
+.shape-tool[draggable="true"]:active {
+  cursor: grabbing; /* Indicates the item is currently being dragged */
+}
+
+.canvas-area.drag-over {
+  /* Example: Change border or background when an item is dragged over */
+  border: 2px dashed #007bff;
+  background-color: #f0f8ff; /* Light blueish background */
+}
 /* Shape.js specific styles might be minimal if using inline styles primarily, */
 /* but you could add base styles here if needed. */
