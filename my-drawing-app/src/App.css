@@ -66,14 +66,15 @@ body {
 
 
 .app-sidebar {
-  width: 150px;
+  width: 150px; /* Adjust as needed */
   padding: 20px;
-  border-left: 1px solid #ccc;
+  /* border-left: 1px solid #ccc; /* REMOVED to prevent double border with canvas-area */
   background-color: #f9f9f9;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 
 .app-sidebar h3 {
   margin-top: 0;
@@ -119,11 +120,10 @@ body {
 .triangle-icon {
   width: 0;
   height: 0;
+  border: 0;
   border-left: 25px solid transparent;
   border-right: 25px solid transparent;
   border-bottom: 50px solid lightcoral;
-  border-top: 0;
-  border-color: transparent transparent lightcoral transparent;
   background-color: transparent;
 }
 
