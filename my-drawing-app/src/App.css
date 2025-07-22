@@ -1,4 +1,3 @@
-/* src/App.css */
 body {
   margin: 0;
   font-family: sans-serif;
@@ -8,7 +7,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  border: 1px solid #ccc; /* Matches the image outline */
+  border: 1px solid #ccc;
   box-sizing: border-box;
 }
 
@@ -27,7 +26,7 @@ body {
   border: 1px solid #ddd;
   border-radius: 4px;
   margin-right: 20px;
-  flex-grow: 1; /* Allow it to take available space */
+  flex-grow: 1;
 }
 
 .header-button {
@@ -45,19 +44,19 @@ body {
 
 .main-content {
   display: flex;
-  flex-grow: 1; /* Takes remaining vertical space */
-  overflow: hidden; /* Prevent unwanted scrollbars if content overflows due to padding/borders */
+  flex-grow: 1;
+  overflow: hidden;
 }
 
 .canvas-area {
-  flex-grow: 1; /* Takes most of the space */
+  flex-grow: 1;
   border-right: 1px solid #ccc;
-  position: relative; /* For absolute positioning of shapes */
+  position: relative;
   background-color: #fff;
-  overflow: hidden; /* No scrolling as per requirement */
-  display: flex; /* To center the placeholder */
-  align-items: center; /* To center the placeholder */
-  justify-content: center; /* To center the placeholder */
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .canvas-placeholder {
@@ -67,9 +66,9 @@ body {
 
 
 .app-sidebar {
-  width: 150px; /* Adjust as needed */
+  width: 150px;
   padding: 20px;
-  border-left: 1px solid #ccc; /* Matches image, but Canvas has border-right */
+  border-left: 1px solid #ccc;
   background-color: #f9f9f9;
   display: flex;
   flex-direction: column;
@@ -88,7 +87,7 @@ body {
   border-radius: 4px;
   cursor: pointer;
   text-align: center;
-  width: 80px; /* Fixed width for tool items */
+  width: 80px;
   background-color: white;
 }
 
@@ -101,12 +100,11 @@ body {
   background-color: #efefef;
 }
 
-/* Basic visual icons for sidebar tools */
 .tool-icon {
   width: 50px;
   height: 50px;
-  margin: 0 auto 5px auto; /* Center the icon and add space below */
-  border: 1px solid black; /* For visibility, same as shapes on canvas */
+  margin: 0 auto 5px auto;
+  border: 1px solid black;
 }
 
 .circle-icon {
@@ -124,9 +122,9 @@ body {
   border-left: 25px solid transparent;
   border-right: 25px solid transparent;
   border-bottom: 50px solid lightcoral;
-  border-top: 0; /* Remove the black border for the container */
-  border-color: transparent transparent lightcoral transparent; /* Ensure only bottom border has color */
-  background-color: transparent; /* Ensure no background color on the div itself */
+  border-top: 0;
+  border-color: transparent transparent lightcoral transparent;
+  background-color: transparent;
 }
 
 
@@ -135,30 +133,27 @@ body {
   border-top: 1px solid #ccc;
   background-color: #f0f0f0;
   display: flex;
-  justify-content: space-around; /* Distribute items evenly */
+  justify-content: space-around;
   align-items: center;
 }
 
 .app-footer span {
   margin: 0 10px;
-  padding: 5px 10px; /* Added padding for visual grouping */
-  border: 1px solid #ddd; /* Added border to match image */
-  border-radius: 4px; /* Rounded corners */
+  padding: 5px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
   background-color: white;
 }
 
 .shape-tool[draggable="true"] {
-  cursor: grab; /* Indicates to the user that the item is draggable */
+  cursor: grab;
 }
 
 .shape-tool[draggable="true"]:active {
-  cursor: grabbing; /* Indicates the item is currently being dragged */
+  cursor: grabbing;
 }
 
 .canvas-area.drag-over {
-  /* Example: Change border or background when an item is dragged over */
   border: 2px dashed #007bff;
-  background-color: #f0f8ff; /* Light blueish background */
+  background-color: #f0f8ff;
 }
-/* Shape.js specific styles might be minimal if using inline styles primarily, */
-/* but you could add base styles here if needed. */

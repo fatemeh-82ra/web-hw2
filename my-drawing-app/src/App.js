@@ -1,11 +1,9 @@
-// src/App.js
 import React from 'react';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import Canvas from './components/Canvas';
 import Footer from './components/Footer';
 import {AppProvider} from "./context/AppContext";
-// import { AppProvider } from './AppContext'; // Import the provider
 import './App.css';
 
 function App() {

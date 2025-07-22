@@ -1,4 +1,3 @@
-// src/AppContext.js
 import React, { createContext, useState, useCallback, useMemo } from 'react';
 
 export const AppContext = createContext();
@@ -83,7 +82,7 @@ export const AppProvider = ({ children }) => {
                 event.target.value = null; // Reset file input
             }
         }
-    }, []); // setDrawingName & setShapesOnCanvas from useState are stable
+    }, []);
 
     const contextValue = {
         drawingName,

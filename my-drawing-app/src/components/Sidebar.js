@@ -1,7 +1,5 @@
-// src/components/Sidebar.js
 import React, { useContext } from 'react';
 import {AppContext} from "../context/AppContext";
-// import { AppContext } from '../AppContext'; // Adjust path
 
 const SHAPES = [
     { id: 'circle', label: '● Circle' },
@@ -10,7 +8,6 @@ const SHAPES = [
 ];
 
 function Sidebar() {
-    // Consume context values
     const { selectedShapeTool, setSelectedShapeTool } = useContext(AppContext);
 
     const handleDragStart = (event, shapeId) => {

@@ -1,10 +1,7 @@
-// src/components/Footer.js
 import React, { useContext } from 'react';
 import {AppContext} from "../context/AppContext";
-// import { AppContext } from '../AppContext'; // Adjust path
 
 function Footer() {
-    // Consume shapeCounts from context
     const { shapeCounts } = useContext(AppContext);
 
     return (

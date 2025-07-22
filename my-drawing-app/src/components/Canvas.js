@@ -1,11 +1,8 @@
-// src/components/Canvas.js
 import React, { useState, useContext } from 'react';
 import Shape from './Shape';
 import {AppContext} from "../context/AppContext";
-// import { AppContext } from '../AppContext'; // Adjust path
 
 function Canvas() {
-    // Consume context values
     const {
         shapesOnCanvas,
         addShapeToCanvasOnClick,
@@ -19,7 +16,6 @@ function Canvas() {
         if (event.target !== event.currentTarget) {
             return;
         }
-        // Ensure addShapeToCanvasOnClick from context is used
         if (addShapeToCanvasOnClick) {
             const rect = event.currentTarget.getBoundingClientRect();
             const x = event.clientX - rect.left;
@@ -68,7 +64,6 @@ function Canvas() {
                     type={shape.type}
                     x={shape.x}
                     y={shape.y}
-                    // Pass removeShapeFromCanvas from context directly
                     onDoubleClick={removeShapeFromCanvas}
                 />
             ))}

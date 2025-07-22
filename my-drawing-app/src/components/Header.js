@@ -1,8 +1,6 @@
-// src/components/Header.js
 import React, { useContext, useRef } from 'react';
 import {AppContext} from "../context/AppContext";
 function Header() {
-    // Consume context values instead of props
     const { drawingName, setDrawingName, handleExport, handleImport } = useContext(AppContext);
     const fileInputRef = useRef(null);
 
